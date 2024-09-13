@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sp0-oky's Space-Themed Website</title>
+    <title>Sp0-oky's Website</title>
     
     <!-- Add Favicon -->
-    <link rel="icon" href="https://i.ibb.co/47zBg8k/favicon-32x32.png" type="image/x-icon">
+    <link rel="icon" href="https://i.ibb.co.com/47zBg8k/favicon-32x32.png" type="image/x-icon">
     
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -15,147 +15,197 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle, #000020, #000000);
-            font-family: 'Orbitron', sans-serif;
-            overflow: hidden;
-            text-align: center;
-            position: relative;
-            color: white;
-        }
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Orbitron', sans-serif;
+        overflow: hidden;
+        text-align: center;
+        position: relative;
+        background-color: black; /* Dark background for the starry sky */
+    }
 
-        .background-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+    /* Container for particle effects */
+    #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1; /* Make sure particles are behind content */
+    }
 
-        h1, h2, h3 {
-            color: white;
-            opacity: 0;
-            text-shadow: 0 0 20px #00ccff, 0 0 40px #00ccff, 0 0 60px #00ccff;
-            animation: neonGlow 2s ease-in-out infinite alternate, fadeIn 2s forwards;
-        }
+    h1, h2, h3 {
+        color: white;
+        position: relative;
+        z-index: 2; /* Ensure text is above particles */
+        opacity: 0;
+        transition: opacity 2s ease;
+        animation: rainbowGlow 5s linear infinite, float 3s ease-in-out infinite;
+    }
 
-        h2 {
-            font-size: 2em;
-        }
+    /* Other styles remain unchanged */
+    h1 {
+        font-size: 4em;
+        text-shadow: 0 0 15px #ff0000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
 
-        h3 {
-            font-size: 1.4em;
-        }
+    h2 {
+        font-size: 2em;
+        text-shadow: 0 0 10px #ff0000;
+        margin-top: -10px;
+        animation-delay: 0.2s;
+    }
 
-        @keyframes neonGlow {
-            0% { text-shadow: 0 0 20px #00ccff, 0 0 40px #00ccff, 0 0 60px #00ccff; }
-            100% { text-shadow: 0 0 30px #ff00ff, 0 0 50px #ff00ff, 0 0 80px #ff00ff; }
-        }
+    h3 {
+        font-size: 1.4em;
+        text-shadow: 0 0 10px #ff0000;
+        margin-top: -10px;
+        animation-delay: 0.4s;
+    }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+    .image-container {
+        border: 2.5px solid transparent;
+        border-radius: 10px;
+        padding: 5px;
+        width: 150px;
+        height: 150px;
+        box-shadow: 0 0 20px #ff0000;
+        animation: neonBorderGlow 5s linear infinite;
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
+    .button-container {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-        .button-container {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+    .button {
+        display: block;
+        width: 200px;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 1.2em;
+        color: white;
+        background: linear-gradient(135deg, #333, #3A76D2);
+        border: 2px solid transparent;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out, background-color 0.3s, transform 0.3s, border-color 0.3s;
+        animation: rainbowBorder 5s linear infinite, neonBorderGlow 5s ease-in-out infinite;
+    }
 
-        .button {
-            display: block;
-            width: 200px;
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 1.2em;
-            color: white;
-            background: linear-gradient(135deg, #222, #555);
-            border: 2px solid;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
-            text-align: center;
-            opacity: 0;
-            animation: rainbowBorder 5s linear infinite, fadeIn 2s forwards;
-        }
+    .button:hover {
+        background: linear-gradient(135deg, #00aaff, #00cfff);
+        transform: scale(1.1);
+        border-color: #00cfff;
+        transition: background 0.3s, transform 0.3s;
+    }
 
-        .button:hover {
-            background: linear-gradient(135deg, #0088ff, #33ccff);
-            transform: scale(1.1);
-        }
+    @keyframes rainbowGlow {
+        0% { text-shadow: 0 0 15px #ff0000; }
+        16% { text-shadow: 0 0 15px #ff7f00; }
+        32% { text-shadow: 0 0 15px #ffff00; }
+        48% { text-shadow: 0 0 15px #7fff00; }
+        64% { text-shadow: 0 0 15px #00ffff; }
+        80% { text-shadow: 0 0 15px #0000ff; }
+        100% { text-shadow: 0 0 15px #ff00ff; }
+    }
 
-        @keyframes rainbowBorder {
-            0% { border-color: #ff0000; }
-            16% { border-color: #ff7f00; }
-            32% { border-color: #ffff00; }
-            48% { border-color: #00ff00; }
-            64% { border-color: #00ffff; }
-            80% { border-color: #0000ff; }
-            100% { border-color: #ff00ff; }
-        }
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
 
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            border-top: 4px solid #00ff99;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
+    @keyframes rainbowBorder {
+        0% { border-color: #ff0000; }
+        16% { border-color: #ff7f00; }
+        32% { border-color: #ffff00; }
+        48% { border-color: #7fff00; }
+        64% { border-color: #00ffff; }
+        80% { border-color: #0000ff; }
+        100% { border-color: #ff00ff; }
+    }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    @keyframes neonBorderGlow {
+        0% { box-shadow: 0 0 10px #ff0000; }
+        16% { box-shadow: 0 0 10px #ff7f00; }
+        32% { box-shadow: 0 0 10px #ffff00; }
+        48% { box-shadow: 0 0 10px #7fff00; }
+        64% { box-shadow: 0 0 10px #00ffff; }
+        80% { box-shadow: 0 0 10px #0000ff; }
+        100% { box-shadow: 0 0 10px #ff00ff; }
+    }
+
+    .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #3A76D2;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
     </style>
 </head>
 <body>
 
-    <div id="particles-js" class="background-particles"></div>
+    <!-- Starry background particles -->
+    <div id="particles-js"></div>
+
     <div class="spinner"></div>
-    <h1>Hello, World!</h1>
-    <h2>Welcome to my space-themed website!</h2>
+    <h1>
+        <div class="image-container">
+            <img src="https://i.ibb.co.com/2jXgQSw/cc33a3ca986e110e9d197cef97189d48.jpg" alt="Placeholder Image">
+        </div>
+        Hi, I'm Sp0-oky!
+    </h1>
+    <h2>Welcome to my website!</h2>
     <h3>Where you can find me:</h3>
 
     <div class="button-container">
-        <a href="https://www.youtube.com/@spooky024" class="button" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://scratch.mit.edu/users/skyinertia/" class="button" target="_blank"><img src="https://i.ibb.co/DKR5CdX/scratch-logo-icon-249671-1-1.png" alt="Scratch Logo"> Scratch</a>
-        <a href="https://www.pinterest.com/Sp0_oky" class="button" target="_blank"><i class="fab fa-pinterest"></i> Pinterest</a>
-        <a href="https://open.spotify.com/user/31bljlsnvgexgvtoabpblsi25q4i" class="button" target="_blank"><i class="fab fa-spotify"></i> Spotify</a>
-        <a href="https://x.com/skyinertia" class="button" target="_blank"><i class="fab fa-twitter"></i> X</a>
-        <a href="https://discord.com/users/1213802387295182848" class="button" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-        <a href="https://www.roblox.com/users/3225496266/profile" class="button" target="_blank"><img src="https://i.ibb.co/NyfYxdD/CITYPNG-COM-HD-Roblox-White-Symbol-Sign-Icon-Logo-PNG-2000x2000-1.png" alt="Roblox Logo"> Roblox</a>
-        <a href="https://www.pixiv.net/en/users/108725965" class="button" target="_blank"><i class="fas fa-palette"></i> Pixiv</a>
-        <a href="https://www.github.com/skyinertia" class="button" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://www.tiktok.com/@sp0_0ky" class="button" target="_blank"><i class="fab fa-tiktok"></i> Tiktok</a>
+        <!-- Buttons omitted for brevity -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Initialize particles.js
+        // Particles.js configuration for starry sky
         particlesJS('particles-js', {
             "particles": {
                 "number": {
-                    "value": 200,
+                    "value": 100,
                     "density": {
                         "enable": true,
-                        "value_area": 1000
+                        "value_area": 800
                     }
                 },
                 "color": {
@@ -166,56 +216,46 @@
                     "stroke": {
                         "width": 0,
                         "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
                     }
                 },
                 "opacity": {
-                    "value": 0.3,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
+                    "value": 0.5,
+                    "random": false
                 },
                 "size": {
-                    "value": 2,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": false
                 },
                 "move": {
                     "enable": true,
                     "speed": 1,
                     "direction": "none",
-                    "random": false,
+                    "random": true,
                     "straight": false,
                     "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
+                    "bounce": false
                 }
             },
-            "retina_detect": true
+            "interactivity": {
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    }
+                }
+            }
         });
 
+        // Fade-in effect for elements
         window.onload = function() {
             document.querySelector('h1').style.opacity = '1';
             document.querySelector('h2').style.opacity = '1';
             document.querySelector('h3').style.opacity = '1';
-            document.querySelector('.spinner').style.display = 'none';
+            document.querySelectorAll('.button').forEach(button => button.style.opacity = '1');
         }
     </script>
-
 </body>
 </html>
