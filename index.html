@@ -26,7 +26,7 @@
         overflow: hidden;
         text-align: center;
         position: relative;
-        background-color: linear-gradient(135deg, #000, #0077ff); /* Deep space blue background */
+        background-color: #001F3F; /* Deep space blue background */
     }
 
     /* Container for particle effects */
@@ -36,7 +36,7 @@
         height: 100%;
         top: 0;
         left: 0;
-        z-index: -1; /* Make sure particles are behind content */
+        z-index: 1; /* Make sure particles are behind content */
     }
 
     h1, h2, h3 {
@@ -102,6 +102,7 @@
         margin: 10px;
         font-size: 1.2em;
         color: white;
+        z-index: 1;
         background: linear-gradient(135deg, #001F3F, #0077ff); /* Dark blue to light blue */
         border: 2px solid transparent;
         border-radius: 5px;
