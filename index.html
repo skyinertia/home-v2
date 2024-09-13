@@ -267,6 +267,13 @@
             },
             "retina_detect": true
         });
+        // Fade-in effect for elements
+        window.onload = function() {
+            document.querySelector('h1').style.opacity = '1';
+            document.querySelector('h2').style.opacity = '1';
+            document.querySelector('h3').style.opacity = '1';
+            document.querySelectorAll('.button').forEach(button => button.style.opacity = '1');
+        }
     </script>
 
 </body>
