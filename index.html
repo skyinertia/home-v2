@@ -121,6 +121,33 @@
         transition: background 0.3s, transform 0.3s;
     }
 
+    /* Mobile-friendly adjustments */
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 2.5em;
+            gap: 10px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.1em;
+        }
+
+        .button {
+            width: 150px;
+            font-size: 1em;
+            padding: 8px 15px;
+        }
+
+        .image-container {
+            width: 120px;
+            height: 120px;
+        }
+    }
+
     @keyframes rainbowGlow {
         0% { text-shadow: 0 0 15px #0077ff; }
         16% { text-shadow: 0 0 15px #00aaff; }
