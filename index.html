@@ -32,33 +32,6 @@
         overflow-y: auto; /* Allow vertical scrolling */
     }
 
-.visualizer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.bar {
-    width: 20px;
-    background: linear-gradient(to top, #00ff00, #ff0000);
-}
-
-.left {
-    position: absolute;
-    left: 0;
-    height: 50%;
-}
-
-.right {
-    position: absolute;
-    right: 0;
-    height: 50%;
-}
-
     /* Container for particle effects */
     #particles-js {
         position: absolute;
@@ -253,53 +226,6 @@
         <source src="https://static.wikia.nocookie.net/sol-rng/images/a/aa/Derpcat_-_Something_Different_%28feat._Talurre%29.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
-    <div class="visualizer">
-        <div class="bar left"></div>
-        <div class="bar right"></div>
-    </div>
-
-    <script>
-        const audioPlayer = document.getElementById('audioPlayer');
-
-// Create audio context and analyzer
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const audioSource = audioContext.createMediaElementSource(audioPlayer);
-const analyser = audioContext.createAnalyser();
-
-// Connect audio source to analyzer and then to the destination (speakers)
-audioSource.connect(analyser);
-analyser.connect(audioContext.destination);
-
-// Set up analyzer properties
-analyser.fftSize = 64;  // Controls how detailed the frequency data is
-const bufferLength = analyser.frequencyBinCount;
-const dataArray = new Uint8Array(bufferLength);
-
-// Get the bar elements
-const leftBar = document.querySelector('.left');
-const rightBar = document.querySelector('.right');
-
-// Function to update visualizer bars
-function updateVisualizer() {
-    // Get frequency data
-    analyser.getByteFrequencyData(dataArray);
-
-    // Use average frequency value to set bar heights
-    const leftValue = dataArray[1];  // Use one frequency band for left bar
-    const rightValue = dataArray[bufferLength - 2];  // Use another frequency band for right bar
-
-    // Scale heights to a percentage of the container's height
-    leftBar.style.height = (leftValue / 255) * 100 + '%';
-    rightBar.style.height = (rightValue / 255) * 100 + '%';
-
-    // Repeat the animation
-    requestAnimationFrame(updateVisualizer);
-}
-
-// Start the visualizer
-updateVisualizer();
-    </script>
 
     <script>
         // Hide the audio controls
