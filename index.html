@@ -28,8 +28,8 @@
         position: relative;
         background: url('https://images.unsplash.com/photo-1417577097439-425fb7dec05e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;; /* Deep space blue background */
         background-size: cover;
-        min-height: 500vh; /* Use min-height instead of height */
-        overflow-y: auto; /* Allow vertical scrolling */
+        min-height: 200vh;
+        overflow-y: auto; /* allow vertical scrolling */
     }
 
     /* Container for particle effects */
@@ -39,13 +39,13 @@
         height: 100%;
         top: 0;
         left: 0;
-        z-index: 1; /* Make sure particles are behind content */
+        z-index: 1; /* make sure particles are behind content */
     }
 
     h1, h2, h3 {
         color: white;
         position: relative;
-        z-index: 2; /* Ensure text is above particles */
+        z-index: 2; /* make sure text is above particles */
         opacity: 0;
         transition: opacity 2s ease;
         animation: rainbowGlow 5s linear infinite, float 3s ease-in-out infinite;
@@ -53,7 +53,7 @@
 
     h1 {
         font-size: 4em;
-        text-shadow: 0 0 15px #00cfff; /* Blue glow */
+        text-shadow: 0 0 15px #00cfff; /* blue glow */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -62,14 +62,14 @@
 
     h2 {
         font-size: 2em;
-        text-shadow: 0 0 10px #00aaff; /* Blue glow */
+        text-shadow: 0 0 10px #00aaff; /* blue glow */
         margin-top: -10px;
         animation-delay: 0.2s;
     }
 
     h3 {
         font-size: 1.4em;
-        text-shadow: 0 0 10px #0077ff; /* Blue glow */
+        text-shadow: 0 0 10px #0077ff; /* blue glow */
         margin-top: -10px;
         animation-delay: 0.4s;
     }
@@ -80,7 +80,7 @@
         padding: 5px;
         width: 150px;
         height: 150px;
-        box-shadow: 0 0 20px #00cfff; /* Blue neon border */
+        box-shadow: 0 0 20px #00cfff; /* blue neon border */
         animation: neonBorderGlow 5s linear infinite;
     }
     
@@ -106,7 +106,7 @@
         font-size: 1.2em;
         color: white;
         z-index: 1;
-        background: linear-gradient(135deg, #001F3F, #0077ff); /* Dark blue to light blue */
+        background: linear-gradient(135deg, #001F3F, #0077ff); /* dark blue to light blue */
         border: 2px solid transparent;
         border-radius: 5px;
         text-decoration: none;
@@ -123,7 +123,7 @@
         transition: background 0.3s, transform 0.3s;
     }
 
-    /* Mobile-friendly adjustments */
+    /* mobile-friendly adjustments */
     @media (max-width: 600px) {
         h1 {
             font-size: 2.5em;
@@ -222,17 +222,17 @@
     <h2>Welcome to my website!</h2>
     <h3>Where you can find me:</h3>
 
-    <audio id="audioPlayer" autoplay loop>
+    <audio id="audioPlayer" autoplay loop> /* this only works if the user has allowed this site to autoplay audios! */
         <source src="https://static.wikia.nocookie.net/sol-rng/images/a/aa/Derpcat_-_Something_Different_%28feat._Talurre%29.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <script>
-        // Hide the audio controls
+        // hide the audio controls
         document.getElementById('audioPlayer').controls = false;
     </script>
 
-    <div class="button-container">
+    <div class="button-container"> // links
         <a href="https://www.youtube.com/@spooky024" class="button" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
         <a href="https://scratch.mit.edu/users/skyinertia/" class="button" target="_blank"><img src="https://i.ibb.co.com/DKR5CdX/scratch-logo-icon-249671-1-1.png" alt="Scratch Logo"> Scratch</a>
         <a href="https://www.pinterest.com/Sp0_oky" class="button" target="_blank"><i class="fab fa-pinterest"></i> Pinterest</a>
@@ -313,19 +313,19 @@
             "retina_detect": true
         });
 
-       // Add the 'loaded' class to trigger the fade-in effect
+       // add the 'loaded' class to trigger the fade-in effect
         window.onload = function() {
             document.querySelector('h1').style.opacity = '1';
             document.querySelector('h2').style.opacity = '1';
             document.querySelector('h3').style.opacity = '1';
-            document.querySelector('.spinner').style.display = 'none'; // Hide spinner once loaded
+            document.querySelector('.spinner').style.display = 'none'; // hides spinner once loaded
             
-            // Fade in buttons one by one
+            // fade in buttons one by one
             const buttons = document.querySelectorAll('.button');
             buttons.forEach((button, index) => {
                 setTimeout(() => {
                     button.style.opacity = '1';
-                }, index * 100); // Delay each button by 150ms
+                }, index * 125); // delay each button by 150ms
             });
         };
     </script>
