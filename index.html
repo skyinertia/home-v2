@@ -14,12 +14,204 @@
     <!-- Import Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Link to External CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+    body {
+        margin: 0;
+        /*height: 100vh; */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        font-family: 'Orbitron', sans-serif;
+        overflow: hidden;
+        text-align: center;
+        position: relative;
+        background: url('https://images.unsplash.com/photo-1417577097439-425fb7dec05e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;; /* Deep space blue background */
+        background-size: cover;
+        min-height: 200vh;
+        overflow-y: auto; /* allow vertical scrolling */
+    }
+
+    /* Container for particle effects */
+    #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1; /* make sure particles are behind content */
+    }
+
+    h1, h2, h3 {
+        color: white;
+        position: relative;
+        z-index: 2; /* make sure text is above particles */
+        opacity: 0;
+        transition: opacity 2s ease;
+        animation: rainbowGlow 5s linear infinite, float 3s ease-in-out infinite;
+    }
+
+    h1 {
+        font-size: 4em;
+        text-shadow: 0 0 15px #00cfff; /* blue glow */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    h2 {
+        font-size: 2em;
+        text-shadow: 0 0 10px #00aaff; /* blue glow */
+        margin-top: -10px;
+        animation-delay: 0.2s;
+    }
+
+    h3 {
+        font-size: 1.4em;
+        text-shadow: 0 0 10px #0077ff; /* blue glow */
+        margin-top: -10px;
+        animation-delay: 0.4s;
+    }
+
+    .image-container {
+        border: 2.5px solid transparent;
+        border-radius: 10px;
+        padding: 5px;
+        width: 150px;
+        height: 150px;
+        box-shadow: 0 0 20px #00cfff; /* blue neon border */
+        animation: neonBorderGlow 5s linear infinite;
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .button-container {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .button {
+        display: block;
+        width: 200px;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 1.2em;
+        color: white;
+        z-index: 1;
+        background: linear-gradient(135deg, #001F3F, #0077ff); /* dark blue to light blue */
+        border: 2px solid transparent;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out, background-color 0.3s, transform 0.3s, border-color 0.3s;
+        animation: rainbowBorder 5s linear infinite, neonBorderGlow 5s ease-in-out infinite;
+    }
+
+    .button:hover {
+        background: linear-gradient(135deg, #00aaff, #00cfff);
+        transform: scale(1.1);
+        border-color: #00cfff;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    /* mobile-friendly adjustments */
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 2.5em;
+            gap: 10px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.1em;
+        }
+
+        .button {
+            width: 150px;
+            font-size: 1em;
+            padding: 8px 15px;
+        }
+
+        .image-container {
+            width: 120px;
+            height: 120px;
+        }
+    }
+
+    @keyframes rainbowGlow {
+        0% { text-shadow: 0 0 15px #0077ff; }
+        16% { text-shadow: 0 0 15px #00aaff; }
+        32% { text-shadow: 0 0 15px #00ffff; }
+        48% { text-shadow: 0 0 15px #00cfff; }
+        64% { text-shadow: 0 0 15px #007fff; }
+        80% { text-shadow: 0 0 15px #0044ff; }
+        100% { text-shadow: 0 0 15px #0077ff; }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
+
+    @keyframes rainbowBorder {
+        0% { border-color: #00cfff; }
+        16% { border-color: #00aaff; }
+        32% { border-color: #00ffff; }
+        48% { border-color: #00cfff; }
+        64% { border-color: #007fff; }
+        80% { border-color: #0044ff; }
+        100% { border-color: #00cfff; }
+    }
+
+    @keyframes neonBorderGlow {
+        0% { box-shadow: 0 0 10px #0077ff; }
+        16% { box-shadow: 0 0 10px #00aaff; }
+        32% { box-shadow: 0 0 10px #00ffff; }
+        48% { box-shadow: 0 0 10px #00cfff; }
+        64% { box-shadow: 0 0 10px #007fff; }
+        80% { box-shadow: 0 0 10px #0044ff; }
+        100% { box-shadow: 0 0 10px #0077ff; }
+    }
+
+    .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #00cfff;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        position: absolute;
+        top: 40%;
+        left: 47%;
+        transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    </style>
 </head>
 <body>
+
     <!-- Starry background particles -->
     <div id="particles-js"></div>
+
     <div class="spinner"></div>
     <h1>
         <div class="image-container">
@@ -30,10 +222,15 @@
     <h2>Welcome to my website!</h2>
     <h3>Where you can find me:</h3>
 
-    <audio id="audioPlayer" autoplay loop>
+    <audio id="audioPlayer" autoplay loop> /* this only works if the user has allowed this site to autoplay audios! */
         <source src="https://static.wikia.nocookie.net/sol-rng/images/a/aa/Derpcat_-_Something_Different_%28feat._Talurre%29.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <script>
+        // hide the audio controls
+        document.getElementById('audioPlayer').controls = false;
+    </script>
 
     <div class="button-container">
         <a href="https://www.youtube.com/@spooky024" class="button" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
@@ -51,6 +248,87 @@
 
     <!-- Include particles.js script for background particles -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 200,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 2.5,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false,
+                    "distance": 1500,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2.5,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+       // add the 'loaded' class to trigger the fade-in effect
+        window.onload = function() {
+            document.querySelector('h1').style.opacity = '1';
+            document.querySelector('h2').style.opacity = '1';
+            document.querySelector('h3').style.opacity = '1';
+            document.querySelector('.spinner').style.display = 'none'; // hides spinner once loaded
+            
+            // fade in buttons one by one
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach((button, index) => {
+                setTimeout(() => {
+                    button.style.opacity = '1';
+                }, index * 125); // delay each button by 150ms
+            });
+        };
+    </script>
+
 </body>
 </html>
