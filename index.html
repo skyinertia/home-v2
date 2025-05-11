@@ -26,7 +26,7 @@
         overflow: hidden;
         text-align: center;
         position: relative;
-        background: url('https://images.unsplash.com/photo-1417577097439-425fb7dec05e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;; /* Deep space blue background */
+        background: url('https://i.ibb.co.com/WvWBZZR2/starlight-promenade.gif') no-repeat center center fixed;; /* Deep space blue background */
         background-size: cover;
      /*   min-height: 200vh;
         overflow-y: auto;  allow vertical scrolling */
@@ -75,13 +75,14 @@
     }
 
     .image-container {
-        border: 2.5px solid transparent;
+        border: 1.5px solid #00cfff;
         border-radius: 10px;
-        padding: 5px;
+        padding: 0px;
         width: 150px;
         height: 150px;
         box-shadow: 0 0 20px #00cfff; /* blue neon border */
-        animation: neonBorderGlow 5s linear infinite;
+        animation: neonBorderGlow 5s linear infinite, borderGlowPulse 5s linear infinite;
+        overflow: hidden;
     }
     
     .image-container img {
@@ -89,6 +90,7 @@
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
+        display: block;
     }
 
     .button-container {
@@ -175,6 +177,15 @@
         80% { border-color: #0044ff; }
         100% { border-color: #00cfff; }
     }
+    @keyframes borderGlowPulse {
+        0% { border-color: #0077ff; }
+        16% { border-color: #00aaff; }
+        32% { border-color: #00ffff; }
+        48% { border-color: #00cfff; }
+        64% { border-color: #007fff; }
+        80% { border-color: #0044ff; }
+        100% { border-color: #0077ff; }
+    }
 
     @keyframes neonBorderGlow {
         0% { box-shadow: 0 0 10px #0077ff; }
@@ -223,7 +234,7 @@
     <h3>Where you can find me:</h3>
 
     <audio id="audioPlayer" autoplay loop> /* this only works if the user has allowed this site to autoplay audios! */
-        <source src="https://static.wikia.nocookie.net/sol-rng/images/a/aa/Derpcat_-_Something_Different_%28feat._Talurre%29.mp3" type="audio/mpeg">
+        <source src="https://github.com/skyinertia/something/raw/refs/heads/main/quiet%20time%20%5BTubeRipper.cc%5D.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
